@@ -84,7 +84,7 @@ class Journal(LibraryItem):
             self.checked_out = True
             print("Checking out the journal '"+str(self.title)+"' with issue number"+str(self.issue_number)+".")
         else:
-                raise ValueError("The journal '"+str(self.title)+"' with issue number",self.issue_number,"is already checked out.")
+            raise ValueError("The journal '"+str(self.title)+"' with issue number",self.issue_number,"is already checked out.")
             
     def return_item(self):
         if self.checked_out == True:
@@ -117,14 +117,23 @@ class LibraryCatalog():
             raise ValueError("No such item found in in catalog.")
         
     def find_item_by_title(self, title):
+        item_found = False
         for item in self.lib_items:
             if item.title == title:
                 print("The item titled '"+str(item.title)+"' is located at "+str(item.location)+".")
-            else:
-                raise ValueError("No item with such title found in catalog.")
+                item_found = True
+                break
+        if item_found == False:
+            raise ValueError("No item with such title found in catalog.")
     
     def check_out_item(self, item):
         if item in self.lib_items:
-            
-                
-        self.catalog.append(item)
+            item.check_out()
+        else:
+            raise ValueError("No such item found in catalog.")
+
+    def return_item(self, item):
+        if item in self.lib_items:
+            item.return_item()
+        else:
+            raise ValueError("No such item found in catalog.")
