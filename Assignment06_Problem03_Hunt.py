@@ -49,7 +49,7 @@ class CommissionEmployee(Employee):
 def totalSalary(list):
     salarySum = 0
     for employee in list:
-        salarySum += salarySum+ employee.calculate_salary()
+        salarySum = salarySum+ employee.calculate_salary()
     print("The total weekly salary of the employees is "+str(salarySum)+".")
 
 employee1 = HourlyEmployee("John Doe", "Software Engineer", 60, 40)
