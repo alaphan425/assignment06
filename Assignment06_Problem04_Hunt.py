@@ -82,16 +82,16 @@ class Journal(LibraryItem):
     def check_out(self):
         if self.checked_out == False:
             self.checked_out = True
-            print("Checking out the journal '"+str(self.title)+"' with issue number"+str(self.issue_number)+".")
+            print("Checking out volume "+str(self.volume)+" of the journal '"+str(self.title)+"' with issue number"+str(self.issue_number)+".")
         else:
-            raise ValueError("The journal '"+str(self.title)+"' with issue number",self.issue_number,"is already checked out.")
+            raise ValueError("Volume "+str(self.volume)+" of the journal '"+str(self.title)+"' with issue number",self.issue_number,"is already checked out.")
             
     def return_item(self):
         if self.checked_out == True:
             self.checked_out = False
-            print("Returning the journal '"+str(self.title)+"' with issue number"+str(self.issue_number)+".")
+            print("Returning volume "+str(self.volume)+" of the journal '"+str(self.title)+"' with issue number"+str(self.issue_number)+".")
         else:
-            raise ValueError("The journal '"+str(self.title)+"' with issue number",self.issue_number,"is already in the library.")
+            raise ValueError("Volume "+str(self.volume)+" of the journal '"+str(self.title)+"' with issue number",self.issue_number,"is already in the library.")
             
     def get_details(self):
         print("Title:",self.title)
@@ -125,7 +125,7 @@ class LibraryCatalog():
                 break
         if item_found == False:
             raise ValueError("No item with such title found in catalog.")
-    
+
     def check_out_item(self, item):
         if item in self.lib_items:
             item.check_out()
